@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+}
+
+.doodles {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  row-gap: 20px;
+}
