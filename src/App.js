@@ -1,8 +1,10 @@
 import "./App.css";
 import Doodle from "./doodle";
+import AllDoodles from "./allDoodles";
 
 function App() {
   return (
+    // <AllDoodles />
     <div className="doodles">
       <Doodle // randomisation can be done on the box colors and
         //the way they transform upon scale property in line 13
@@ -35,7 +37,7 @@ function App() {
       />
       <Doodle // changes on the basis of line rotation of 45 deg in either direction
         rule={`
-          @grid: 16 / 460px; 
+          @grid: 16 / 460px;
           @size: 1px calc(141.4% + 1px);
           transform: rotate(@p(±45deg));
           background: #000;
@@ -78,7 +80,7 @@ function App() {
           background-color: #17191D;
           background-image: @m(4, radial-gradient(var(--c) 35%, transparent 0));
           background-size: @m(4, @pn(100% 40%, 40% 100%));
-      
+
           @random(.5) {
             background-size: @m(4, @pn(25% 25%, 25% 25%));
           }
@@ -115,7 +117,7 @@ function App() {
           --p: @pn(0 100%, 0 0, 100% 100%, 100% 0);
           background:
             @multi(6, (
-              linear-gradient(@p(#4CAABE, #EDEED1, #ED7B4E, #3B120E, #E3363A), @lp()) 
+              linear-gradient(@p(#4CAABE, #EDEED1, #ED7B4E, #3B120E, #E3363A), @lp())
                 var(--p) / @pn(20%, 40%, 60%, 80%, 100%) @lp() no-repeat
             ))
         `}
@@ -142,7 +144,7 @@ function App() {
               @p(45deg, -45deg),
               @multi(2, @p(#E3363A, #3B120E, #4CAABE, #ED7B4E, #EDEED1) 50%)
             )
-              @p(100% 100%, 0 100%, 100%, 0 0) / 
+              @p(100% 100%, 0 100%, 100%, 0 0) /
               calc(@n() * 100% / 2) calc(@n() * 100% / 2) no-repeat
           ))
         `}
@@ -194,7 +196,7 @@ function App() {
                 y: sin(2t) + sin(t) * 2;
               );
             );
-            background-position: 
+            background-position:
               -25px 45px, 50px 75px, 90px 95px,
               160px 165px, 20px 0, 22px -65px,
               110px -18px, 120px 34px, 130px 125px,
@@ -206,7 +208,7 @@ function App() {
         rule={`
           @grid: 1 / 460px;
           background-size: 300px 300px;
-          background-color: #293D56; 
+          background-color: #293D56;
           background-image: @doodle(
             @grid: 16x1 / 100%;
             @place-cell: center;
@@ -218,7 +220,7 @@ function App() {
               clip-path: @shape(
                 split: 240;
                 y: sin(2t) * sin(4t) * cos(5t);
-                x: cos(2t) * cos(5t) * sin(t); 
+                x: cos(2t) * cos(5t) * sin(t);
               );
             );
             background-position: @pn(
@@ -232,10 +234,10 @@ function App() {
               z-index: 1;
               background: @m90(
                 radial-gradient(
-                  @p(#ff6f6f,#fff46e,#f6f6f6,#a58bff) @r(50%), 
+                  @p(#ff6f6f,#fff46e,#f6f6f6,#a58bff) @r(50%),
                   transparent 0
-                ) 
-                @r(100%) @r(100%) / @r(10px) @lr 
+                )
+                @r(100%) @r(100%) / @r(10px) @lr
                 no-repeat
               );
             }
@@ -252,7 +254,7 @@ function App() {
               @lp()
                 calc(@n() * 100% / @size())
             ))
-          );  
+          );
       `}
       />
 
@@ -289,7 +291,7 @@ function App() {
               @p(45deg, -45deg),
               @multi(2, @p(#E3363A, #3B120E, #4CAABE, #ED7B4E, #EDEED1) 50%)
             )
-              @p(100% 100%, 0 100%, 100%, 0 0) / 
+              @p(100% 100%, 0 100%, 100%, 0 0) /
               calc(@n() * 100% / 2) calc(@n() * 100% / 2) no-repeat
           ))
         `}
@@ -383,8 +385,8 @@ function App() {
                   background: radial-gradient(
                     @stripe.@m2.@p(
                       @m10(#293462),
-                      @m10(#211a4c), 
-                      @m2(#b2ebf2), 
+                      @m10(#211a4c),
+                      @m2(#b2ebf2),
                       #e84a5f
                     )
                   );
@@ -428,11 +430,11 @@ function App() {
           @grid: 9 / 460px;
           background: #fff;
         }
-      
+
         border-style: double;
         border-color: @p(#FFECBA, #FF8D68, #A00154, #001E52);
         border-width: @p(2vmin 0 0 0, 0 2vmin 0 0, 0 0 2vmin 0, 0 0 0 2vmin );
-      
+
         :after {
           content: '';
           position: absolute;
@@ -532,18 +534,17 @@ function App() {
         :doodle {
           @grid: 4 / 460px;
           background: #fff;
-          
-      
+
         }
-      
+
         background: @p(#ffecbaaa, #ff8d68aa, #a10054aa, #001f52aa);
         transform: scale(.5) translate(-50%, -50%);
         margin: 2vmin;
-        
+
         box-shadow:
           4.2vmin 4.2vmin 0 8vmin
           @pd(#bff4edaa, #280f34aa, #b30753aa, #f6c667aa);
-      
+
         :after, :before {
           content: '';
           position: absolute;
@@ -565,7 +566,7 @@ function App() {
         rule={`
         --time: 4s;
         --delay: calc(-1 * @index() * var(--time) / 20);
-        
+
         :doodle{
           @grid: 12x1 / 460px;
         }
@@ -582,7 +583,7 @@ function App() {
           }
         }
         animation: rotate var(--time) infinite ease-in var(--delay);
-        
+
         border-radius: 3px 8px 8px 3px;
         border: 2px solid #444;
         transform-origin: right center;
@@ -625,13 +626,13 @@ function App() {
         :doodle {
           @grid: 15 / 460px;
           background: #21295C;
-        } 
+        }
         transform: rotate(@rand(360)deg);
         background: @pick(#1B3B6F, #065A82);
         transition: .2s @rand(.6s);
         @size: 80%;
         margin: auto;
-        :hover{ 
+        :hover{
           transform: rotate(@rand(360)deg);
           transition: .2s;
         }
@@ -644,27 +645,27 @@ function App() {
           @grid: 15 / 460px;
           @shape: circle;
         }
-        
+
         border-radius: 50%;
-        border: calc(1px + .05vmin) 
+        border: calc(1px + .05vmin)
           solid transparent;
-         
+
         --r: @rand(360deg);
         --n: calc(
-            @abs(@abs(@row() - 8) 
+            @abs(@abs(@row() - 8)
           + @abs(@col() - 8) - 15) / 15
         );
-       
+
         transform: rotate(var(--r));
         border-left-color: hsl(
           calc(var(--n) * 360 + 120), 60%, 60%
         );
-        
-        animation: 
+
+        animation:
           spin calc(.6s / var(--n)) linear infinite;
-        
+
         @keyframes spin {
-          to { 
+          to {
             transform: rotate(
               calc(var(--r) + @pick(1turn, -1turn))
             );
@@ -676,16 +677,16 @@ function App() {
       <Doodle // random on basis of which shape will rotate how much (687)
         rule={`
           :doodle {
-            @grid: 6 / 460px; 
+            @grid: 6 / 460px;
           }
-          
-          @shape: alien 
-            @calc(@row() + 1) @calc(@col() + 1); 
-          
+
+          @shape: alien
+            @calc(@row() + 1) @calc(@col() + 1);
+
           transition: .2s ease @rand(500ms);
           will-change: clip-path, transform;
           transform: rotate(@rand(-180deg, 180deg));
-          
+
           margin: 2px;
           background: hsl(
             calc(1.5 * @row() * @col()), 60%, 70%
@@ -696,15 +697,15 @@ function App() {
       <Doodle // random on basis of which shape will rotate how much (706)
         rule={`
           :doodle {
-            @grid: 6 / 460px; 
+            @grid: 6 / 460px;
           }
-          
-          @shape: alien @rand(10) @rand(6) 6 4; 
-          
+
+          @shape: alien @rand(10) @rand(6) 6 4;
+
           will-change: clip-path, transform;
           transition: .2s ease @rand(500ms);
           transform: rotate(@rand(-180deg, 180deg));
-          
+
           margin: 2px;
           background: hsl(
             calc(180 - 1.5 * @index()), 60%, 70%
