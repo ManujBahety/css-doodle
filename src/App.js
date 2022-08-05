@@ -1,23 +1,39 @@
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Doodle from "./doodle";
 import AllDoodles from "./allDoodles";
+import AllDoodles2 from "./allDoodles2";
+import AllDoodles3 from "./allDoodles3";
+import AllDoodles4 from "./allDoodles4";
+import AllDoodles5 from "./allDoodles5";
+import AllDoodles6 from "./allDoodles6";
 
 function App() {
   return (
-    // <AllDoodles />
-    <div className="doodles">
-      <Doodle // randomisation can be done on the box colors and
-        //the way they transform upon scale property in line 13
-        rule={`
+    <Router>
+      <Routes>
+        <Route path="/all1" element={<AllDoodles />} />
+        <Route path="/all2" element={<AllDoodles2 />} />
+        <Route path="/all3" element={<AllDoodles3 />} />
+        <Route path="/all4" element={<AllDoodles4 />} />
+        <Route path="/all5" element={<AllDoodles5 />} />
+        <Route path="/all6" element={<AllDoodles6 />} />
+      </Routes>
+      <div className="doodles">
+        <Link to="/all1" target="_blank">
+          <Doodle // randomisation can be done on the box colors and
+            //the way they transform upon scale property in line 13
+            rule={`
           :doodle {
             @grid: 5/460px;
           }
           background: hsla(@rand(360) , @r(100%), @r(60%,90%), @r(0.9));
           transform: scale(@rand(.2, .9));
         `}
-      />
-      <Doodle // Changes are done on the basis of polygon shapes that are picked in line 27
-        rule={`
+          />
+        </Link>
+        <Doodle // Changes are done on the basis of polygon shapes that are picked in line 27
+          rule={`
           :doodle {
             @grid: 18 / 460px;
             background: #0a0c27;
@@ -34,19 +50,22 @@ function App() {
           )
         );
       `}
-      />
-      <Doodle // changes on the basis of line rotation of 45 deg in either direction
-        rule={`
+        />
+
+        <Link to="/all2" target="_blank">
+          <Doodle // changes on the basis of line rotation of 45 deg in either direction
+            rule={`
           @grid: 16 / 460px;
           @size: 1px calc(141.4% + 1px);
-          transform: rotate(@p(±45deg));
+          transform: rotate(@p(+45deg,-45deg));
           background: #000;
           margin: auto;
       `}
-      />
+          />
+        </Link>
 
-      <Doodle // 4 circles size and color is picked from set values in line 56
-        rule={`
+        <Doodle // 4 circles size and color is picked from set values in line 56
+          rule={`
           @grid : 7/460px;
           background: @p(#FFF4E0, #F8B501, #06ACB5, #17191D, #FC3D3C);
         :after
@@ -66,9 +85,9 @@ function App() {
             )
         }
     `}
-      />
-      <Doodle
-        rule={`
+        />
+        <Doodle
+          rule={`
           :doodle {
             @grid : 7/460px;
             background-color: @p(#F8B501, #06ACB5, #FC3D3C);
@@ -109,10 +128,10 @@ function App() {
             );
           }
       `}
-      />
+        />
 
-      <Doodle // randomisation on basis of linear gradients picked from 6 diff values in line 117
-        rule={`
+        <Doodle // randomisation on basis of linear gradients picked from 6 diff values in line 117
+          rule={`
           @grid : 6/460px;
           --p: @pn(0 100%, 0 0, 100% 100%, 100% 0);
           background:
@@ -121,9 +140,9 @@ function App() {
                 var(--p) / @pn(20%, 40%, 60%, 80%, 100%) @lp() no-repeat
             ))
         `}
-      />
-      <Doodle // randomisation on basis of rtation of Y and X axis which is picked from 2 values
-        rule={`
+        />
+        <Doodle // randomisation on basis of rtation of Y and X axis which is picked from 2 values
+          rule={`
           @grid : 7/460px;
           background: @multi(5, linear-gradient(
             -135deg,
@@ -135,9 +154,9 @@ function App() {
           background-repeat: no-repeat;
           transform: rotateY(@p(180deg, 0deg)) rotateX(@p(180deg, 0deg));
         `}
-      />
-      <Doodle // position is picked from 4 values in line 145
-        rule={`
+        />
+        <Doodle // position is picked from 4 values in line 145
+          rule={`
           @grid: 8/460px;
           background: @multi(2, (
             linear-gradient(
@@ -148,9 +167,9 @@ function App() {
               calc(@n() * 100% / 2) calc(@n() * 100% / 2) no-repeat
           ))
         `}
-      />
-      <Doodle //randomisation in line 169
-        rule={`
+        />
+        <Doodle //randomisation in line 169
+          rule={`
           @grid: 1 / 460px;
           background-color: #fff;
           background-image: @doodle(
@@ -177,9 +196,11 @@ function App() {
             );
           );
       `}
-      />
-      <Doodle // randomisation could be done in line 189,190
-        rule={`
+        />
+
+        <Link to="/all3" target="_blank">
+          <Doodle // randomisation could be done in line 189,190
+            rule={`
           @grid: 1 / 460px;
           background-size: 200px 200px;
           background-image: @doodle(
@@ -203,49 +224,53 @@ function App() {
               5px 90px;
           );
        `}
-      />
-      <Doodle // random butterfly shape in line 218
-        rule={`
+          />
+        </Link>
+
+        <Link to="/all4" target="_blank">
+          <Doodle // random butterfly shape in line 218
+            rule={`
           @grid: 1 / 460px;
-          background-size: 300px 300px;
-          background-color: #293D56;
-          background-image: @doodle(
-            @grid: 16x1 / 100%;
-            @place-cell: center;
-            @size: 100%;
-            background-image: @doodle(
-              @grid: 1 / 80px;
-              background: @p(#ff6f6f,#fff46e,#f6f6f6,#a58bff);
-              transform: rotate(@r(360deg)) scale(@r(.5, 1));
-              clip-path: @shape(
-                split: 240;
-                y: sin(2t) * sin(4t) * cos(5t);
-                x: cos(2t) * cos(5t) * sin(t);
-              );
-            );
-            background-position: @pn(
-              -5px 10px, 65px 25px, 80px 90px, 110px -40px, -40px 120px,
-              40px 240px, 90px 180px, 150px 190px, 160px 40px, 220px 60px,
-              240px 240px, 210px 160px, 20px 150px,  160px 100px
-            );
-            z-index: 2;
-            // for small random dots
-            @nth(15, 16) {
-              z-index: 1;
-              background: @m90(
-                radial-gradient(
-                  @p(#ff6f6f,#fff46e,#f6f6f6,#a58bff) @r(50%),
-                  transparent 0
-                )
-                @r(100%) @r(100%) / @r(10px) @lr
-                no-repeat
-              );
-            }
-          );
+    background-size: 300px 300px;
+    background-color: #293D56; 
+    background-image: @doodle(
+      @grid: 16x1 / 100%;
+      @place-cell: center;
+      @size: 100%;
+      background-image: @doodle(
+        @grid: 1 / 80px;
+        background: @p(#ff6f6f,#fff46e,#f6f6f6,#a58bff);
+        transform: rotate(@r(360deg)) scale(@r(.5, 1));
+        clip-path: @shape(
+          split: 240;
+          y: sin(2t) * sin(4t) * cos(5t);
+          x: cos(2t) * cos(5t) * sin(t); 
+        );
+      );
+      background-position: @pn(
+        -5px 10px, 65px 25px, 80px 90px, 110px -40px, -40px 120px,
+        40px 240px, 90px 180px, 150px 190px, 160px 40px, 220px 60px,
+        240px 240px, 210px 160px, 20px 150px,  160px 100px
+      );
+      z-index: 2;
+      @nth(15, 16) {
+        z-index: 1;
+        background: @m90(
+          radial-gradient(
+            @p(#ff6f6f,#fff46e,#f6f6f6,#a58bff) @r(50%), 
+            transparent 0
+          ) 
+          @r(100%) @r(100%) / @r(10px) @lr 
+          no-repeat
+        );
+      }
+    );
+  );
       `}
-      />
-      <Doodle // diff colors combination picked from a set of values
-        rule={`
+          />
+        </Link>
+        <Doodle // diff colors combination picked from a set of values
+          rule={`
           @grid : 1x5;
           background-image: repeating-linear-gradient(
             @multi(@size(), (
@@ -256,10 +281,10 @@ function App() {
             ))
           );
       `}
-      />
+        />
 
-      <Doodle //random completely
-        rule={`
+        <Doodle //random completely
+          rule={`
           @grid : 8/460px ;
           will-change: transform;
           background: linear-gradient(
@@ -267,9 +292,9 @@ function App() {
             #EDEED1 50%
           ) 0 0 / 100% @r(10%, 100%);
       `}
-      />
-      <Doodle // randomised variables s and t in line 272,273
-        rule={`
+        />
+        <Doodle // randomised variables s and t in line 272,273
+          rule={`
           @grid:6/460px;
           --s: @r(15%, 85%);
           --t: calc(100% - var(--s));
@@ -281,10 +306,10 @@ function App() {
           background-position: 0 0, 100% 100%;
           background-repeat: no-repeat;
         `}
-      />
+        />
 
-      <Doodle //randomisation in postition in line 293
-        rule={`
+        <Doodle //randomisation in postition in line 293
+          rule={`
           @grid: 8/460px;
           background: @multi(2, (
             linear-gradient(
@@ -295,10 +320,10 @@ function App() {
               calc(@n() * 100% / 2) calc(@n() * 100% / 2) no-repeat
           ))
         `}
-      />
+        />
 
-      <Doodle //random completely
-        rule={`
+        <Doodle //random completely
+          rule={`
           @grid: 14/460px;
           background: linear-gradient(45deg,
             @multi(2, @p(#ED7B4E, #E3363A, #3B120E, #4CAABE, #EDEED1) 50%)
@@ -306,10 +331,10 @@ function App() {
           mix-blend-mode: @p(color-burn, screen);
           margin: -25%;
       `}
-      />
+        />
 
-      <Doodle // random on basis of arc colors in line 328
-        rule={`
+        <Doodle // random on basis of arc colors in line 328
+          rule={`
           @grid: 1 / 460px;
           background-color: #fff;
           background-image: @doodle(
@@ -336,10 +361,10 @@ function App() {
             );
           );
       `}
-      />
+        />
 
-      <Doodle // random on basis of color combinations in line 358 and rotation in 359 and grid size in 356
-        rule={`
+        <Doodle // random on basis of color combinations in line 358 and rotation in 359 and grid size in 356
+          rule={`
           @grid: 1 / 460px;
           background: @doodle(
             :doodle {
@@ -364,10 +389,10 @@ function App() {
             );
           );
       `}
-      />
+        />
 
-      <Doodle //random mostly; random on basis of grid size in line 380,382 and color in 384
-        rule={`
+        <Doodle //random mostly; random on basis of grid size in line 380,382 and color in 384
+          rule={`
           @grid: 1 / 460px;
           background-color: #211a4c;
           background-image: @doodle(
@@ -395,10 +420,10 @@ function App() {
             );
           );
         `}
-      />
-
-      <Doodle //random on basis of shape size and its rotation
-        rule={`
+        />
+        <Link to="/all5" target="_blank">
+          <Doodle //random on basis of shape size and its rotation
+            rule={`
           @grid: 1 / 460px;
           background: @doodle(
             :doodle {
@@ -422,10 +447,11 @@ function App() {
             );
           );
         `}
-      />
+          />
+        </Link>
 
-      <Doodle // random on basis of double line colors and its alignment in line 433,34 and 441,42 and size in line 439
-        rule={`
+        <Doodle // random on basis of double line colors and its alignment in line 433,34 and 441,42 and size in line 439
+          rule={`
         :doodle {
           @grid: 9 / 460px;
           background: #fff;
@@ -444,10 +470,10 @@ function App() {
           border-width: @pd(2vmin 0 0 0, 0 2vmin 0 0, 0 0 2vmin 0, 0 0 0 2vmin);
         }
       `}
-      />
-
-      <Doodle //random in basis of shadow(473) ,and rotation (466,471)
-        rule={`
+        />
+        <Link to="/all6" target="_blank">
+          <Doodle //random in basis of shadow(473) ,and rotation (466,471)
+            rule={`
           :doodle {
             @grid: 8 / 460px;
             background-color: #9A5052;
@@ -465,7 +491,7 @@ function App() {
             justify-content: center;
             font-size: 24px;
             font-weight: bold;
-            transform: rotate(@r(-5deg, 5deg)) translate(@m(2, (@r(-100%, 100%))));
+            transform: rotate(5deg) translate(@m(2, (@r(-100%, 100%))));
           }
           ::after {
             content: ".";
@@ -478,10 +504,11 @@ function App() {
             }
           }
       `}
-      />
+          />
+        </Link>
 
-      <Doodle // random on basis of which block will rotate and by how much deg theyll rotate (490,493)
-        rule={`
+        <Doodle // random on basis of which block will rotate and by how much deg theyll rotate (490,493)
+          rule={`
           :doodle {
             @grid: 5x5 / 460px;
             background-color: #6e85a1;
@@ -527,10 +554,10 @@ function App() {
             transform: rotate(180deg);
           }
       `}
-      />
+        />
 
-      <Doodle // random on basis of colors of 4 shapes (539,545,554,558)
-        rule={`
+        <Doodle // random on basis of colors of 4 shapes (539,545,554,558)
+          rule={`
         :doodle {
           @grid: 4 / 460px;
           background: #fff;
@@ -560,10 +587,10 @@ function App() {
           transform: translateY(100%) skewX(45deg);
         }
       `}
-      />
+        />
 
-      <Doodle //random on the basis of 12 colors of phone (574)
-        rule={`
+        <Doodle //random on the basis of 12 colors of phone (574)
+          rule={`
         --time: 4s;
         --delay: calc(-1 * @index() * var(--time) / 20);
 
@@ -603,10 +630,10 @@ function App() {
           background-size: 4px 20px, 2px 15px;
         }
       `}
-      />
+        />
 
-      <Doodle //random on basis of which circle will rotate by how much deg (629)
-        rule={`
+        <Doodle //random on basis of which circle will rotate by how much deg (629)
+          rule={`
           @shape: circle;
           :after {
           content: "";
@@ -637,10 +664,10 @@ function App() {
           transition: .2s;
         }
       `}
-      />
+        />
 
-      <Doodle //either clockwise or anticlockwise
-        rule={`
+        <Doodle //either clockwise or anticlockwise
+          rule={`
         :doodle {
           @grid: 15 / 460px;
           @shape: circle;
@@ -672,10 +699,10 @@ function App() {
           }
         }
       `}
-      />
+        />
 
-      <Doodle // random on basis of which shape will rotate how much (687)
-        rule={`
+        <Doodle // random on basis of which shape will rotate how much (687)
+          rule={`
           :doodle {
             @grid: 6 / 460px;
           }
@@ -692,10 +719,10 @@ function App() {
             calc(1.5 * @row() * @col()), 60%, 70%
           );
       `}
-      />
+        />
 
-      <Doodle // random on basis of which shape will rotate how much (706)
-        rule={`
+        <Doodle // random on basis of which shape will rotate how much (706)
+          rule={`
           :doodle {
             @grid: 6 / 460px;
           }
@@ -711,8 +738,9 @@ function App() {
             calc(180 - 1.5 * @index()), 60%, 70%
           );
       `}
-      />
-    </div>
+        />
+      </div>
+    </Router>
   );
 }
 

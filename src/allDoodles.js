@@ -3,22 +3,28 @@ import Doodle from "./doodle";
 
 function AllDoodles() {
   const arrL = [];
-  const arrH = [...Array(10).keys()];
-  const arrS = [...Array(5).keys()];
-  for (var i = 6; i < 9; i++) {
+  const arrH = [];
+  const arrA = [];
+  const arrS = [];
+  for (var i = 20; i < 23; i++) {
     arrL.push(i);
   }
-  const arrA = [...Array(2).keys()];
+  for (var i = 10; i <= 100; i += 40) {
+    // range it to 360
+    arrH.push(i);
+  }
+  for (var i = 0.5; i <= 0.9; i += 0.1) {
+    arrA.push(i);
+  }
 
-  console.log("in allDoodles");
+  for (var i = 10; i <= 100; i = i + 10) {
+    arrS.push(i);
+  }
+
   return arrH.map((elH) => {
-    // console.log(elH);
     return arrS.map((elS) => {
-      // console.log("elS=", elS);
       return arrL.map((elL) => {
-        //console.log("elL=", elL);
         return arrA.map((elA) => {
-          //   console.log("elA=", elA);
           console.log(elH, elS, elL, elA);
           return (
             <div key={elH}>
