@@ -7,6 +7,8 @@ import AllDoodles3 from "./allDoodles3";
 import AllDoodles4 from "./allDoodles4";
 import AllDoodles5 from "./allDoodles5";
 import AllDoodles6 from "./allDoodles6";
+import AllDoodles7 from "./allDoodles7";
+import AllDoodles8 from "./allDoodles8";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/all4" element={<AllDoodles4 />} />
         <Route path="/all5" element={<AllDoodles5 />} />
         <Route path="/all6" element={<AllDoodles6 />} />
+        <Route path="/all7" element={<AllDoodles7 />} />
+        <Route path="/all8" element={<AllDoodles8 />} />
       </Routes>
       <div className="doodles">
         <Link to="/all1" target="_blank">
@@ -700,9 +704,9 @@ function App() {
         }
       `}
         />
-
-        <Doodle // random on basis of which shape will rotate how much (687)
-          rule={`
+        <Link to="/all7" target="_blank">
+          <Doodle // random on basis of which shape will rotate how much (687)
+            rule={`
           :doodle {
             @grid: 6 / 460px;
           }
@@ -719,10 +723,11 @@ function App() {
             calc(1.5 * @row() * @col()), 60%, 70%
           );
       `}
-        />
-
-        <Doodle // random on basis of which shape will rotate how much (706)
-          rule={`
+          />
+        </Link>
+        <Link to="/all8" target="_blank">
+          <Doodle // random on basis of which shape will rotate how much (706)
+            rule={`
           :doodle {
             @grid: 6 / 460px;
           }
@@ -738,7 +743,8 @@ function App() {
             calc(180 - 1.5 * @index()), 60%, 70%
           );
       `}
-        />
+          />
+        </Link>
       </div>
     </Router>
   );
