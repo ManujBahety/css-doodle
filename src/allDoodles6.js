@@ -1,54 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import Doodle from "./doodle";
+import "./allDoodles.css";
 
 function AllDoodles6() {
-  const arr = [];
-  for (var i = -50; i <= 50; i = i + 1) {
-    arr.push(i);
-  }
-  return arr.map((el) => {
-    console.log(el);
-    return (
-      <div>
-        {el}
-        <Doodle
-          rule={`
-          :doodle {
-            @grid: 8 / 460px;
-            background-color: #9A5052;
-            border-radius: 4px;
-            color: rgba(255, 255, 255, .9);
-            overflow: hidden;
-          }
-          transform: rotate(90deg);
-          ::before {
-            content: "(";
-            position: absolute;
-            top: 0;left: 0;width: 100%;height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: bold;
-            transform: rotate(${
-              el + "deg"
-            }) translate(@m(2, (@r(-100%, 100%))));
-          }
-          ::after {
-            content: ".";
-            font-size: 24px;
-            transform: rotate(@r(-5deg, 5deg)) translate(@m(2, (@r(-100%, 100%))));
-          }
-          @random {
-            ::before {
-              text-shadow: 0 @r(16px, 18px) 0;
-            }
-          }
+  const [grids, setGrids] = useState(4);
+  const [size, setSize] = useState(85);
+  return (
+    <div className="individual">
+      <Doodle
+        rule={`
+          @grid:${grids}/460px;
+          --s: @r(15%, ${size}%);
+          --t: calc(100% - var(--s));
+          background: @multi(2,
+            linear-gradient(@p(#ED7B4E, #E3363A, #3B120E, #4CAABE), @lp())
+          );
+          background-color: #EDEED1;
+          background-size: var(--s) var(--s), var(--t) var(--t);
+          background-position: 0 0, 100% 100%;
+          background-repeat: no-repeat;
       `}
-        />
+      />
+      <div className="main-input">
+        <label className="labelField">
+          Enter Grid Size:
+          <input
+            className="inputField"
+            type="text"
+            inputMode="numeric"
+            name="grid size"
+            placeholder="min value : 2"
+            onChange={(e) => setGrids(e.target.value)}
+          />
+        </label>
+        <label className="labelField">
+          Enter Block Size:
+          <input
+            className="inputField"
+            type="text"
+            inputMode="numeric"
+            name="block size"
+            placeholder="size : (25-100)"
+            onChange={(e) => setSize(e.target.value)}
+          />
+        </label>
+        <h2>Click on the art to see variations</h2>
       </div>
-    );
-  });
+    </div>
+  );
 }
 
 export default AllDoodles6;

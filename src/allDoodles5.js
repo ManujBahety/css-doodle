@@ -1,50 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import Doodle from "./doodle";
+import "./allDoodles.css";
 
 function AllDoodles5() {
-  const arr = [];
-  for (var i = 10; i <= 50; i = i + 10) {
-    arr.push(i);
-  }
-  const arrH = [];
-  for (var i = 30; i <= 360; i = i + 30) {
-    arrH.push(i);
-  }
-  return arrH.map((elH) => {
-    return arr.map((el) => {
-      return (
-        <div>
-          {elH + el}
-          <Doodle
-            rule={`
-          @grid: 1 / 460px;
-          background: @doodle(
-            :doodle {
-              @grid: / 10000px;
-              transform: scale(1.5) rotate(45deg);
-            }
-            background-color: #213061;
-            background-size: 150px 150px;
-            background-image: @doodle(
-              @grid: 10 / 100%;
-              :after, :before {
-                content: '';
-                position: absolute;
-                left: 50%; top: 50%;
-                @size: @r(10%, 50%) 1px;
-                transform: rotate(${elH + "deg"});
-                transform-origin: 0 50%;
-                background: currentColor;
-                color: #fff9;
-              }
+  const [grids, setGrids] = useState(1); // rotate
+  return (
+    <div className="individual">
+      <Doodle
+        rule={`
+            @grid : ${grids}x5/ 460px;
+            background-image:
+             repeating-linear-gradient(
+              @multi(@size(), (
+                @pd(#ED7B4E, #E3363A, #3B120E, #EDEED1, #4CAABE)
+                  calc((@n() - 1) * 100% / @size()),
+                @lp()
+                  calc(@n() * 100% / @size())
+              ))
             );
-          );
+            
         `}
-          />
-        </div>
-      );
-    });
-  });
+      />
+      <label className="labelField">
+        Enter Grid Size:
+        <input
+          className="inputField"
+          type="text"
+          inputMode="numeric"
+          name="grid size"
+          placeholder="min value - 2"
+          onChange={(e) => setGrids(e.target.value)}
+        />
+        Click on the art to see variations
+      </label>
+    </div>
+  );
 }
 
 export default AllDoodles5;
